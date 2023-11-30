@@ -5,7 +5,7 @@ use practica;
 
 -- antes
 -- 1 5000
--- 2 1000
+-- 2 1100
 -- 3 1500
 -- 4 2000
 
@@ -13,5 +13,5 @@ use practica;
 select * from empleados;
 
 update empleados
-set sueldo = sueldo * 1.1
+set sueldo = sueldo / 1.1
 where sueldo * 1.1 < 1600;
