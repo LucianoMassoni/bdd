@@ -1,3 +1,4 @@
+create database clase;
 use clase;
 
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
