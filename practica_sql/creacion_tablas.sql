@@ -3,28 +3,10 @@ use practica;
 create table empleados(
 	id_empleado int not null auto_increment,
     nombre varchar(50),
-    dni int,
-    sueldo double,
-    primary key (id_empleado)
-);
--- el dni tiene que ser varchar
-
-alter table empleados
-modify column dni varchar(9);
-
-create table domicilios(
-	id_domicilio int not null auto_increment,
     dni varchar(9),
-    calle varchar(50),
-    codigo_postal varchar(5),
-    primary key (id_domicilio)
-);
-
-create table telefonos(
-	id_telefono int not null auto_increment,
-    dni varchar(9),
-    telefono varchar(9),
-    primary key(id_telefono)
+    sueldo int,
+    primary key (id_empleado),
+    index idx_dni (dni)
 );
 
 create table codigos_postales(
@@ -32,5 +14,24 @@ create table codigos_postales(
     codigo_postal varchar(5),
     poblacion varchar(50),
     provincia varchar(50),
-    primary key(id_codigoPostal)
+    primary key(id_codigoPostal),
+    index idx_codigo_postal (codigo_postal)
+);
+
+create table domicilios(
+	id_domicilio int not null auto_increment,
+    dni varchar(9),
+    calle varchar(50),
+    codigo_postal varchar(5),
+    primary key (id_domicilio),
+    foreign key (dni) references empleados(dni),
+	foreign key (codigo_postal) references codigos_postales(codigo_postal)
+);
+
+create table telefonos(
+	id_telefono int not null auto_increment,
+    dni varchar(9),
+    telefono varchar(9),
+    primary key(id_telefono),
+    foreign key (dni) references empleados(dni)
 );
