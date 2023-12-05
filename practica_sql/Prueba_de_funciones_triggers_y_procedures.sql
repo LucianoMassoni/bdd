@@ -2,9 +2,15 @@ use practica;
 
 select * from empleados;
 
+drop procedure crearEmpleado;
 delimiter //
 create procedure crearEmpleado(nombre varchar(50), dni varchar(9), sueldo int)
 begin
+	declare continue handler for sqlwarning
+    begin
+		select 'se esta creando un empleado' as msg;
+    end;
+    
 	insert into empleados(nombre, dni, sueldo)
 	values(nombre, dni, sueldo);
 end;
@@ -12,10 +18,11 @@ end;
 
 delimiter ;
 
-drop function crearEmpleado2;
 
 call crearEmpleado("juan","87654321A",20);
 
+
+drop function crearEmpleado2;
 delimiter //
 create function crearEmpleado2 (nombre varchar(50), dni varchar(9), sueldo int)
 returns varchar(70) deterministic
@@ -43,6 +50,7 @@ create function eliminarPorDni(dni varchar(9))
 returns varchar(200) deterministic
 begin
 	declare r varchar(200) default 'error';
+	
 	set r = if (exists(select 1 from empleados as e where e.dni = dni),
 		'Empleado eliminado',
         'Empleado no encontrado');
