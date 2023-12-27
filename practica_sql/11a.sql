@@ -11,7 +11,7 @@ from
     codigos_postales, 
     domicilios
 where 
-	empleados.dni = domicilios.dni 
+	empleados.dni = domicilios.dni  
 and 
 	domicilios.codigo_postal = codigos_postales.codigo_postal
 group by 

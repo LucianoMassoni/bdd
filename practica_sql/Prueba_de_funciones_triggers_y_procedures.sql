@@ -6,18 +6,12 @@ drop procedure crearEmpleado;
 delimiter //
 create procedure crearEmpleado(nombre varchar(50), dni varchar(9), sueldo int)
 begin
-	declare continue handler for sqlwarning
-    begin
-		select 'se esta creando un empleado' as msg;
-    end;
-    
 	insert into empleados(nombre, dni, sueldo)
 	values(nombre, dni, sueldo);
 end;
 //
 
 delimiter ;
-
 
 call crearEmpleado("juan","87654321A",20);
 

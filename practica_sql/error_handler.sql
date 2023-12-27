@@ -1,6 +1,5 @@
 use practica;
 
-
 drop procedure crearDomicilio;
 delimiter //
 create procedure crearDomicilio(pdni varchar(9), pcalle varchar(50), pcodigo_postal varchar(5))
@@ -22,6 +21,7 @@ end;
 //
 
 delimiter ;
+
 select * from codigos_postales;
 select * from domicilios;
 call crearDomicilio("12345678A","juan","08050");
